@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Work_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import BooksProvider from "@/contexts/BooksContext";
 
 const playfairDisplay = Playfair_Display({
 	variable: "--font-playfair",
@@ -25,9 +26,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 			data-theme="light"
 			className={`${playfairDisplay.variable} ${workSans.variable} h-full antialiased`}>
 			<body className="min-h-full max-w-7xl mx-auto flex flex-col">
-				<Navbar />
+				<BooksProvider>
+					<Navbar />
 
-				<main>{children}</main>
+					<main>{children}</main>
+				</BooksProvider>
 			</body>
 		</html>
 	);

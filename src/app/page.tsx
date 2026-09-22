@@ -26,8 +26,7 @@ const Home = () => {
 					</div>
 				</div>
 			</section>
-
-			<Books />
+			<Books isPopular={true} />
 		</div>
 	);
 };

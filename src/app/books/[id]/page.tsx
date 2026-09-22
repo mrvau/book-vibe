@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import { getBooks } from "@/lib/api";
 import Book from "@/types/book.type";
 import Image from "next/image";
@@ -7,8 +8,8 @@ interface BookDetailsProps {
 }
 
 const BookDetailsPage = async ({ params }: BookDetailsProps) => {
-	const books = await getBooks();
 	const { id } = await params;
+	const books = await getBooks();
 	const book = books.find((book: Book) => String(book.bookId) == String(id));
 
 	if (!book) throw new Error("Book not found: Invalid Book Id");
@@ -24,7 +25,7 @@ const BookDetailsPage = async ({ params }: BookDetailsProps) => {
 							alt={book.bookName}
 							width={800}
 							height={1200}
-							className="h-auto max-h-[600px] w-full object-cover"
+							className="h-auto max-h-150 w-full object-cover"
 						/>
 					</div>
 				</div>
@@ -118,13 +119,13 @@ const BookDetailsPage = async ({ params }: BookDetailsProps) => {
 
 					{/* Actions */}
 					<div className="mt-auto flex flex-col gap-3 pt-6 sm:flex-row">
-						<button className="flex-1 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition-all hover:bg-blue-700 hover:shadow-blue-600/30 active:scale-[0.98]">
+						<Button book={book}>
 							Read
-						</button>
+						</Button>
 
-						<button className="flex-1 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 transition-all hover:border-slate-400 hover:bg-slate-50 active:scale-[0.98]">
+						<Button book={book}>
 							Wishlist
-						</button>
+						</Button>
 					</div>
 				</div>
 			</div>
